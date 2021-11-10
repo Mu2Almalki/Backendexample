@@ -1,5 +1,5 @@
 # Backendexample
-Back En example
+Backend example
 # Getting started with Back End development.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -43,42 +43,40 @@ Guide
     10. If we did everything correctly we should get that call back function inside of our get reqest working.
 <img width="706" alt="Screen Shot 1443-04-05 at 3 37 20 AM" src="https://user-images.githubusercontent.com/63668672/141028144-6b377af1-ee3d-48a3-b6e5-bf647d77b1bb.png">
 
+<img width="1183" alt="Screen Shot 1443-04-05 at 4 24 34 AM" src="https://user-images.githubusercontent.com/63668672/141032521-41e1a851-05bc-438c-9add-bd2d53c5183d.png">
 
-2. Create the first reducer. In this case let's go to "./src/reducers/user/user.js"
-    1. Declare a variable under the name "initialState", that holds an object with a key for the state name and an initial value, in this case " {user: ''} ". This will be our initial container for our state, where all the information is going to be held up.
-    2. Declare a function under the same name as the file. and in the values that you are going to pass to it, write the following "state = initialState, {type, payload}"
-    This means when we sue "state" inside of the function it will mean whatever we have inside of the initialState variable, and whenever we invoque the "user" function we will have to pass two parameteres.
-    type: The name of the action.
-    payload: the value that we are going to apply to the state.
-    3. Inside of the function we will have a switch statement where we will pass the value of the "type"
-        1. On the default we will use return state so it doesnt make any changes.
-        2. Each case will have a string that would correspond to the type of an action and in the return we would return the new state depending on the payload.
-    4. Create an action, an action needs to have the following criteria.
-        An action is a function that will have as a return a type with a string in it that describes the type of action.
-        Commonly it is all in uppercase letters with a underscore instead of spaces.
-        Needs to be a string, mandatory.
-        And in this case a payload that has information about the new state.
+2. Let's create the routes to organize our code.
+    1. Inside of our project we are going to create a folder with the name "routes"
+    2. Inside of the "routes" folder I will create a file called "homeworks.js"
+    3. Now let's conect all the cables from our "server.js" file to our "homework.js" file.
+        1. Let's create a variable called homework and set the path to the folder inside of the require.
+        2. And new let's get a path that says that anytime we have a user go to the "/homework" we will go into the homework variable that will lead us to the "homework.js" file.
 
-3. Now let's go to the store.js file inside of the reducer folder.
-    1. import createStore, combineReducers from redux
-    createStore: it's a method that takes a reducer and creates the redux store with it.
-    combineReducers: Combines multiple reducers in one.
-    2. Import the reducer from its file location.
-    3. Define a variable called "reducers", we will use to store all the reducer functions with the combineReducers method.
-    4. Declare a variable called "store" and set it equal the method "createStore" and pass the reducers variable as a value as you invoque it.
-    5. Export default store
 
-4. Now let's go to index.js inside of out 'src' folder. Here we will use a built in component to make the state inside of the reducers available to all the children elements regardless of where they are located.
-    1. Import Provider from react-redux
-    2. Import store from its folder location.
-    3. Use the Provider component ti wrap the App component and add the atrributte "store" the the oppenning tag and set it equal to the store value.
+3. Now that we have connected this endpoint to that file let's make some ROUTES inside of "homework.js".
+    1. Let's require express just like we did in "server.js"
+    2. Now let's bring in Router and store it in a variable called "router".
+    3. And while we are at it let's export this module called "router".
+    this module I'm exporting would be the one that I am requiring in the "homework" variable inside of "server.js"
+    <img width="876" alt="Screen Shot 1443-04-05 at 4 55 15 AM" src="https://user-images.githubusercontent.com/63668672/141035296-4c624fd6-7e78-4713-a094-310b10dd235f.png">
+    <img width="780" alt="Screen Shot 1443-04-05 at 4 55 58 AM" src="https://user-images.githubusercontent.com/63668672/141035384-ba92770e-1840-4e20-abbf-173b8997a3e9.png">
+    4. Now it's time to create our first route for a get request that will correspond to this endpoint with a console.log inside that will allow me to check if this is working using Postman.
+    <img width="530" alt="Screen Shot 1443-04-05 at 5 01 12 AM" src="https://user-images.githubusercontent.com/63668672/141035842-07a49029-f8fc-42cf-bcc6-c55d7debc1bf.png">
+<img width="755" alt="Screen Shot 1443-04-05 at 5 01 35 AM" src="https://user-images.githubusercontent.com/63668672/141035870-4dc3b48c-975f-4abc-8217-fd7b82905b37.png">
 
-5. Go to the component where you want to acces the state inside of the reducer, in this example you can go to App.js inside of the src folder.
-    1. Import useDispatch, useSelector from react-redux.
-        useDispatch: allows me to change the value of the state in the reducer.
-        useSelector: allows me to acces and read the value of the state inside of the reducer.
-    2. Import the action we want to use from the reducer.
-    3. Create a useState hook where you will manage the value of the user inside of the component.
-    4. Create a function to use the dispach method to pass the new value to the action that will get all the way to the state inside of the reducer.
-    5. In this case we use the value inside of the setUser hook to have the addNewUser function dispatch this information to the user reducer.
-    6. You can also acces the state of the reducer using the "state.user we get form the useSelector method de declared previously.
+# TASKS.
+
+4. So we now have succsesfully created our route, but what information is it going to be bringing across?
+We are going to create a new array of objects that will store every single one of the homework labs you have done thus far.
+it needs to have an id, a title, a link, a short description and also the technologies used in it(HTML, CSS, JavaScript, React, Node, Express, Bootstrap, etc).
+    1. Locate this array of objects in a different file and require it to be able to acces it.
+    2. Write a post request that will allow us to add homeworks as the bootcamp continues for a few more weeks and YES we will have more homeworks.
+    3. Try it on Postman and save that collection with the GET and POST request
+    
+5. Create a new route for a blog feature. (Same body as yesterday)
+    1.  You will also have a GET router to display the blog posts.
+    2.  A POST to be able to create new blog posts.
+    3.  A PUT to be able to edit the blog posts
+    4.  A DELETE as well. 
+    5.  The information for the blog posts should also be in a seperate file. 
+    6.  Try it on Postman and save that collection with the GET, POST, PUT and DELTE requests.
