@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, install the following packages:
 
-### `npm install express cors nodemon`
+### `npm install express cors`
 
 Now let's get our package.json file and check for the dependencies where we can find what we have just installed, for that we will use the following command:
 
