@@ -9,4 +9,3 @@ router.get("/", (req, res)=>{
 
 // 3.3. And while we are at it let's export this module.
 module.exports = router;
-
